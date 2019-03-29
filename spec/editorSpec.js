@@ -6,6 +6,9 @@ describe("Editor", () => {
   const mockMDE = {
     codemirror: {
       setOption: function() {}
+    },
+    value() {
+      return 'mock value';
     }
   };
   const editor = new Editor(mockMDE);
@@ -37,6 +40,34 @@ describe("Editor", () => {
     // it("calls controller.handleDelete when change was a deletion", () => {
     //
     // });
+  });
+
+  describe('sendTestToBackend', () => {
+    const mockResponse = {
+      json() { return JSON.stringify({'result': true}); }
+    };
+
+    beforeAll(() => {
+      const fetchPromise = new Promise(function(resolve, reject) {
+        resolve(mockResponse);
+      });
+      global.fetch = jasmine.createSpy('fetch').and.returnValue(fetchPromise);
+      spyOn(editor, 'testResultReceived');
+
+      editor.sendTestToBackend();
+    });
+
+    it('makes a post to /mySQL', () => {
+      expect(fetch).toHaveBeenCalledWith('/mySQL', {
+        method: "POST",
+        body: JSON.stringify({ text: 'mock value' }),
+        headers: { 'content-type': 'application/json' }
+      });
+    });
+
+    it('calls the function to update test indicator with the result', () => {
+      expect(editor.testResultReceived).toHaveBeenCalledWith(mockResponse);
+    });
   });
 
   describe("updateView", () => {
