@@ -1,6 +1,6 @@
 {
-  "name": "conclave",
-  "version": "1.0.0",
+  "name": "class-pad",
+  "version": "0.1.0",
   "description": "Peer-to-peer collaborative text editor",
   "main": "app.js",
   "scripts": {
