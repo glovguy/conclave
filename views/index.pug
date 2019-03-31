@@ -1,12 +1,7 @@
 extends layout.pug
 
-block link
-  p.sharing-link
-    a.link(id='myLink' target="_blank") Sharing Link
-    span(id="myLinkInput" class="aside disappear")
-    span(class="copy-container" data-tooltip="Copy to Clipboard")
-      i(data-feather="copy" class="copy-link" color="rgb(17, 117, 232)")
-    span(class="copy-status") Copied!
-
-block scripts
-  script(src='js/bundle.js')
+block content
+  h1 ClassPad Rooms
+    list
+      li You are amazing
+      li You are amazing2

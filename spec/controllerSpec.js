@@ -74,13 +74,13 @@ describe("Controller", () => {
     it("sets the link input's text content", () => {
       controller.updateShareLink(targetPeerId, mockDoc);
       const updatedLink = mockDoc.querySelector("#myLinkInput").textContent;
-      expect(updatedLink).toEqual(host+"?" + targetPeerId);
+      expect(updatedLink).toEqual(host+"/doc?" + targetPeerId);
     });
 
     it("sets the link's href attribute", () => {
       controller.updateShareLink(targetPeerId, mockDoc);
       const href = mockDoc.querySelector("#myLink").getAttribute('href');
-      expect(href).toEqual(host+"?" + targetPeerId);
+      expect(href).toEqual(host+"/doc?" + targetPeerId);
     });
   });
 
@@ -98,7 +98,7 @@ describe("Controller", () => {
     it('creates a new URL from the id passed in', () => {
       spyOn(mockWin.history, 'pushState');
       controller.updatePageURL(12345, mockWin);
-      expect(mockWin.history.pushState).toHaveBeenCalledWith({}, '', host + '?12345');
+      expect(mockWin.history.pushState).toHaveBeenCalledWith({}, '', host + '/doc?12345');
     });
 
     it('redirects the window to the new url', () => {

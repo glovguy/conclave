@@ -12,28 +12,20 @@ app.set('views', './views');
 app.set('view engine', 'pug');
 
 app.get('/', function (req, res) {
-  res.render('index', {title: 'Conclave'});
+  // res.writeHead(302, {
+  //   'Location': '/doc'
+  // });
+  // res.end();
+  res.render('index', {title: 'ClassPad'});
 });
 
-app.get('/about', function (req, res) {
-  res.render('about', {title: 'About'});
+app.get('/doc', function (req, res) {
+  res.render('doc', {title: 'ClassPad | Doc'});
 });
 
-app.get('/bots', function(req, res) {
-  res.render('bots', {title: 'Talk to Bots'});
-});
-
-app.get('/idLength', function (req, res) {
-  res.render('idGraph');
-});
-
-app.get('/opTime', function (req, res) {
-  res.render('timeGraph');
-});
-
-app.get('/arraysGraph', function (req, res) {
-  res.render('arraysGraph');
-});
+// app.get('/about', function (req, res) {
+//   res.render('about', {title: 'About'});
+// });
 
 app.use(express.json());
 app.post('/mySQL', function (req, res) {
